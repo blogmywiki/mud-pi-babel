@@ -150,5 +150,7 @@ Author
 
 MUD Pi was written by Mark Frimston
 
-For feedback, please email <mfrimston@gmail.com> or add a comment on the 
+For feedback on the original, please email <mfrimston@gmail.com> or add a comment on the 
 project's [Github page](http://github.com/frimkron/mud-pi)
+
+This version was modified by Giles Booth to add a new location, rooms, shouting, objects, picking up and dropping objects, inventory.

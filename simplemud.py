@@ -60,12 +60,20 @@ rooms = {
     },
     "Landing": {
         "description": "A beautiful landing. The walls and floors are covered in marble.",
-        "exits": {"south": "Duty Operations Manager\'s office", "down": "Club"},
+        "exits": {"south": "Duty Operations Manager\'s office", "down": "Lobby"},
+    },
+    "Lobby": {
+        "description": "A marble lobby.",
+        "exits": {"north": "Club", "up": "Landing", "west": "Canteen"},
     },
     "Club": {
         "description": "The Bush House BBC Club. \nIf you\'d like to play a proper adventure set in Bush House visit http://suppertime.co.uk/tower-of-babel/play.html",
-        "exits": {"up": "Landing"},
-    }
+        "exits": {"south": "Lobby"},
+    },
+    "Canteen": {
+        "description": "A large canteen with a low ceiling, dirty formica tables and flourescent lighting.",
+        "exits": {"east": "Lobby"},
+    },
 }
 
 objects = {
@@ -150,7 +158,11 @@ while True:
             # player
             mud.send_message(pid, "{} has left the building".format(
                                                         players[id]["name"]))
-
+                                                        
+        # players leaving the game should drop any objects they're carrying
+        for item in players[id]["inventory"]:
+            objects[item]["location"] = players[id]["room"]
+            
         # remove the player's entry in the player dictionary
         del(players[id])
 

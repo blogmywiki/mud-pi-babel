@@ -4,6 +4,9 @@ MUD Pi - Tower of Babel edition
 A simple text-based Multi-User Dungeon (MUD) game, which could be run on a 
 Raspberry Pi or other low-end server.
 
+his version was modified by Giles Booth to add a new location, rooms, shouting, objects, picking up and dropping objects, inventory, ability to leave a message for other players even after you've left the game by writing on the whiteboard.
+
+
 
 Requirements
 ------------

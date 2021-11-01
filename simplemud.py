@@ -21,7 +21,7 @@ Some ideas for things to try adding:
 author: Mark Frimston - mfrimston@gmail.com
 
 modified by Giles Booth to add Bush House location, shouting, objects,
-ability to pick up and drop some objects, inventory
+ability to pick up and drop some objects, inventory, whiteboard
 """
 
 import time
@@ -78,7 +78,7 @@ rooms = {
 
 objects = {
     "whiteboard" : {
-    	"description": "A dirty whiteboard and a marker pen attached by a piece of red leader tape.",
+    	"description": "It says 'For sale: bathmat, slightly soiled.'",
     	"portable": False,
     	"location": "Studio Managers\' Common Room"
     },
@@ -216,6 +216,8 @@ while True:
             mud.send_message(id, "  drop <thing>    - Put an object down "
                                  + "e.g. 'drop key'")
             mud.send_message(id, "  inventory       - List what you\'re carrying")
+            mud.send_message(id, "  write <message> - Write on the whiteboard "
+                                 + "e.g. 'write Sam was here'")
             mud.send_message(id, "  go <exit>       - Move through the exit "
                                  + "specified, e.g. 'go outside'")
 
@@ -362,6 +364,14 @@ while True:
             else:
                 # send back an 'unknown exit' message
                 mud.send_message(id, "You can\'t go '{}'".format(ex))
+                
+        # allow player to leave a message on the whiteboard
+        elif command == 'write':
+            if players[pid]["room"] == "Studio Managers\' Common Room":
+                objects["whiteboard"]["description"] = "It says '{}'".format(params)
+                mud.send_message(id, "You have written '{}' on the whiteboard.".format(params))
+            else:
+                mud.send_message(id, "There's nothing to write on here.")
 
 		# player pressed enter with no command
         elif command == '':

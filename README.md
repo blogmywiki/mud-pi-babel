@@ -4,7 +4,9 @@ MUD Pi - Tower of Babel edition
 A simple text-based Multi-User Dungeon (MUD) game, which could be run on a 
 Raspberry Pi or other low-end server.
 
-his version was modified by Giles Booth to add a new location, rooms, shouting, objects, picking up and dropping objects, inventory, ability to leave a message for other players even after you've left the game by writing on the whiteboard.
+This version was modified by Giles Booth to add a new location, rooms, shouting, objects, 
+picking up and dropping objects, inventory, ability to leave a message for other players 
+even after you've left the game by writing on the whiteboard.
 
 
 
@@ -19,11 +21,14 @@ the best way to install on Linux would be via the package manager.
 To allow players to connect remotely, the server will also need to be connected
 to the internet. 
 
-To connect to the server you will need a telnet client. On Mac, Linux, and 
-versions of Windows prior to Windows Vista, the telnet client is usually 
+To connect to the server you will need a telnet client. On older Macs, Linux, and 
+versions of Windows prior to Windows Vista, the telnet client may be 
 installed by default. For Windows Vista, 7, 8 or later, you may need to follow
 [this guide](http://technet.microsoft.com/en-us/library/cc771275%28v=ws.10%29.aspx)
 to install it.
+
+You can also use a mobile and desktop app like [Terminus](https://www.termius.com/ios) 
+as a Telnet client.
 
 
 Running the Server
@@ -51,6 +56,8 @@ re-attach to your screen session using `screen -r`. Alternatively you could
 [create a daemon script](http://jimmyg.org/blog/2010/python-daemon-init-script.html)
 to run the script in the background every time the server starts.
 
+Or edit /etc/rc.local to run the MUD server at startup:
+`python /home/pi/simplemud.py &`
 
 Connecting to the Server
 ------------------------

@@ -22,6 +22,8 @@ author: Mark Frimston - mfrimston@gmail.com
 
 modified by Giles Booth to add Bush House location, shouting, objects,
 ability to pick up and drop some objects, inventory, whiteboard
+
+13 Jun 22 added \r to \n to show newlines in Terminus iOS app
 """
 
 import time
@@ -29,25 +31,23 @@ import time
 # import the MUD server class
 from mudserver import MudServer
 
-splash = '''
- ______                  
-/_  __/__ _    _____ ____
- / / / _ \ |/|/ / -_) __/
-/_/  \___/__,__/\__/_/   
-           ___           
-     ___  / _/           
-    / _ \/ _/            
-   _\___/_/  __       __ 
-  / _ )___ _/ /  ___ / / 
- / _  / _ `/ _ \/ -_) /  
-/____/\_,_/_.__/\__/_/   
-                         '''
+splash = ' ______                  \r\n' + \
+         '/_  __/__ _    _____ ____\r\n' + \
+         ' / / / _ \ |/|/ / -_) __/\r\n' + \
+         '/_/  \___/__,__/\__/_/   \r\n' + \
+         '           ___           \r\n' + \
+         '     ___  / _/           \r\n' + \
+         '    / _ \/ _/            \r\n' + \
+         '   _\___/_/  __       __ \r\n' + \
+         '  / _ )___ _/ /  ___ / / \r\n' + \
+         ' / _  / _ `/ _ \/ -_) /  \r\n' + \
+         '/____/\_,_/_.__/\__/_/   \r\n'
 
 
 # structure defining the rooms in the game. Try adding more rooms to the game!
 rooms = {
     "Studio Managers\' Common Room": {
-        "description": "You're in a small dimly-lit room.\n",
+        "description": "You're in a small dimly-lit room.\r\n",
         "exits": {"outside": "Corridor"},
     },
     "Corridor": {
@@ -67,7 +67,7 @@ rooms = {
         "exits": {"north": "Club", "up": "Landing", "west": "Canteen"},
     },
     "Club": {
-        "description": "The Bush House BBC Club. \nIf you\'d like to play a proper adventure set in Bush House visit http://suppertime.co.uk/tower-of-babel/play.html",
+        "description": "The Bush House BBC Club. \r\nIf you\'d like to play a proper adventure set in Bush House visit http://suppertime.co.uk/tower-of-babel/play.html",
         "exits": {"south": "Lobby"},
     },
     "Canteen": {
@@ -188,9 +188,9 @@ while True:
                                                         players[id]["name"]))
 
             # send the new player a welcome message
-            mud.send_message(id, splash+"\nWelcome to the Tower of Babel, {}.\nThis is a test game made in MUD Pi with just a few rooms but you can talk to other players. ".format(
+            mud.send_message(id, splash+"\r\nWelcome to the Tower of Babel, {}.\r\nThis is a test game made in MUD Pi with just a few rooms but you can talk to other players. ".format(
                                                            players[id]["name"])
-                             + "\n\nType 'help' for a list of commands. Have fun!\n")
+                             + "\r\n\r\nType 'help' for a list of commands. Have fun!\r\n")
 
             # send the new player the description of their current room
             mud.send_message(id, rooms[players[id]["room"]]["description"])
@@ -311,7 +311,7 @@ while True:
             if len(players[id]["inventory"]) > 0:
                 inv_list = "You\'re carrying:"
                 for item in players[id]["inventory"]:
-                    inv_list = inv_list + "\n- a " + item
+                    inv_list = inv_list + "\r\n- a " + item
                 mud.send_message(id, inv_list)
             else:
                 mud.send_message(id, "You\'re not carrying anything.")
